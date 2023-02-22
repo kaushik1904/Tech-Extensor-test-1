@@ -1,6 +1,5 @@
-<form action="" class="container" #userForm="ngForm">
+<form action="" class="container" #userForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
   <!-- 1.name -->
-  {{ userForm.value | json }}
   <div class="form-group">
     <label for="">FirstName : </label>
     <input
@@ -31,6 +30,90 @@
 
   <!-- 2.textarea -->
   <div class="form-group">
-   
+    <textarea
+      class="form-control mt-3"
+      name="textArea"
+      [(ngModel)]="
+        userModel.firstName +
+        ' ' +
+        userModel.middleName +
+        ' ' +
+        userModel.lastName
+      "
+      rows="1"
+      disabled
+    ></textarea>
+  </div>
+
+  <!-- 3.age -->
+  <div class="form-group">
+    <label for="">Age :</label>
+    <input
+      type="number"
+      name="age"
+      [(ngModel)]="userModel.age"
+      class="form-control"
+    />
+  </div>
+
+  <!-- 4.gender -->
+  <div class="mb-3">
+    <label for="">Gender :</label>
+    <div class="form-check">
+      <input
+        type="radio"
+        [(ngModel)]="userModel.gender"
+        class="form-check-input"
+        name="gender"
+        value="Male"
+      />
+      <label for="" class="form-check-label">Male</label>
+    </div>
+    <input
+      type="radio"
+      [(ngModel)]="userModel.gender"
+      class="form-check-input"
+      name="gender"
+      value="Female"
+    />
+    <label for="" class="form-check-label">Female</label>
+  </div>
+
+  <!-- 5.hobby -->
+  <div ngModelGroup="hobby">
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        name="cricket"
+        [(ngModel)]="userModel.hobby.cricket"
+      />
+      <label class="form-check-label" for="inlineCheckbox1">cricket</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        name="dancing"
+        [(ngModel)]="userModel.hobby.dancing"
+      />
+      <label class="form-check-label" for="inlineCheckbox1">dancing</label>
+    </div>
+  </div>
+
+  <!-- 6.company -->
+
+  <div class="form-group">
+    <label class="from-label">Company : </label>
+    <select class="form-select" [(ngModel)]="userModel.company" name="company">
+      <option *ngFor="let i of company">{{ i }}</option>
+    </select>
+  </div>
+
+  <!-- 7.buttons -->
+  <div class="form-group mt-3">
+    <button class="btn btn-secondary" (click)="goBack()">Back</button>
+    <button class="btn btn-primary">Submit</button>
+    <button class="btn btn-warning" (click)="clearAll()">Clear All</button>
   </div>
 </form>
