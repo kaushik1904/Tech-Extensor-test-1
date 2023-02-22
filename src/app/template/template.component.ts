@@ -47,12 +47,13 @@ export class TemplateComponent {
     '',
     '',
     '',
-    { cricket: '', dancing: '' },
+    { cricket: '', dancing: '', reading: '', blogging: '', journaling: '' },
     ''
   );
 
   public id: string = '';
   public userData: any = [];
+
   goBack() {
     this.route.navigate(['home']);
   }
@@ -66,6 +67,10 @@ export class TemplateComponent {
     this.userModel.gender = '';
     this.userModel.hobby.cricket = '';
     this.userModel.hobby.dancing = '';
+    this.userModel.hobby.reading = '';
+    this.userModel.hobby.reading = '';
+    this.userModel.hobby.blogging = '';
+    this.userModel.hobby.journaling = '';
     this.userModel.company = '';
   }
 
@@ -76,10 +81,7 @@ export class TemplateComponent {
       this.userModel.middleName +
       ' ' +
       this.userModel.lastName;
-
     this.id = this.router.snapshot.params['id'];
-    console.log(this.id);
-    console.log(this.userModel);
     this.userData.push({
       id: this.id,
       firstName: this.userModel.firstName,
@@ -91,10 +93,12 @@ export class TemplateComponent {
       hobby: {
         cricket: this.userModel.hobby.cricket,
         dancing: this.userModel.hobby.dancing,
+        reading: this.userModel.hobby.reading,
+        blogging: this.userModel.hobby.blogging,
+        journaling: this.userModel.hobby.journaling,
       },
       company: this.userModel.company,
     });
-    console.log(this.userData);
     localStorage.setItem(this.id, JSON.stringify(this.userData));
     this.route.navigate(['reactive/' + this.id]);
   }

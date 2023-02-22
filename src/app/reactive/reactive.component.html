@@ -67,7 +67,14 @@
       name="age"
       formControlName="age"
       class="form-control"
+      [class.is-invalid]="age.invalid && age.touched"
+      formControlName="age"
     />
+    <div *ngIf="age.invalid && age.touched">
+      <small *ngIf="age.errors?.['required']" class="text-danger"
+        >age required</small
+      >
+    </div>
   </div>
 
   <!-- 4.gender -->
@@ -115,6 +122,36 @@
       />
       <label class="form-check-label">dancing</label>
     </div>
+    <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          name="reading"
+          formControlName="reading"
+          value="reading"
+        />
+        <label class="form-check-label">reading</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          name="blogging"
+          formControlName="blogging"
+          value="blogging"
+        />
+        <label class="form-check-label">blogging</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          name="journaling"
+          formControlName="journaling"
+          value="journaling"
+        />
+        <label class="form-check-label">journaling</label>
+      </div>
   </div>
 
   <!-- 6.company -->
@@ -130,6 +167,6 @@
     <button class="btn btn-secondary" (click)="goBack()">Back</button>
     <button class="btn btn-success" (click)="fetchData()">Fetch Data</button>
     <button class="btn btn-primary">Submit</button>
-    <button class="btn btn-warning" (click)="clearAll()">Clear All</button>
+    <!-- <button class="btn btn-warning" (click)="clearAll()">Clear All</button> -->
   </div>
 </form>

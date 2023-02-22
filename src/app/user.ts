@@ -9,6 +9,9 @@ export class User {
     public hobby: {
       cricket: string;
       dancing: string;
+      reading: string;
+      blogging:string;
+      journaling:string
     },
     public company: string
   ) {}

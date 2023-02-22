@@ -11,7 +11,12 @@ export class ReactiveComponent {
   public userForm: any;
   public userData: any = [];
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userData = JSON.parse(
+      localStorage.getItem(this.route.snapshot.params['id']) || '{}'
+    );
+  }
+
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -27,6 +32,9 @@ export class ReactiveComponent {
       hobby: this.fb.group({
         cricket: [''],
         dancing: [''],
+        reading: [''],
+        blogging: [''],
+        journaling: [''],
       }),
       company: ['', [Validators.required]],
     });
@@ -52,6 +60,9 @@ export class ReactiveComponent {
   get lastName() {
     return this.userForm.controls['lastName'];
   }
+  get age() {
+    return this.userForm.controls['age'];
+  }
 
   onSubmit() {
     const user = this.userForm.value;
@@ -66,26 +77,11 @@ export class ReactiveComponent {
     this.router.navigate(['home']);
   }
 
-  clearAll() {
-    this.userForm.setValue({
-      firstName: '',
-      middleName: '',
-      lastName: '',
-      textArea: '',
-      age: '',
-      gender: '',
-      hobby: {
-        cricket: '',
-        dancing: '',
-      },
-      company: '',
-    });
-  }
-  
+  // clearAll() {
+  //   this.userForm.reset({});
+  // }
+
   fetchData() {
-    this.userData = JSON.parse(
-      localStorage.getItem(this.route.snapshot.params['id']) || '{}'
-    );
     this.userForm.setValue({
       firstName: [this.userData[0]['firstName']],
       middleName: [this.userData[0]['middleName']],

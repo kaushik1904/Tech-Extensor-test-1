@@ -1,4 +1,4 @@
-<form action="" class="container" #userForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+<form action="" class="container" #userForm="ngForm" novalidate>
   <!-- 1.name -->
   <div class="form-group">
     <label for="">FirstName : </label>
@@ -7,7 +7,15 @@
       class="form-control"
       name="firstName"
       [(ngModel)]="userModel.firstName"
+      #firstName="ngModel"
+      [class.is-invalid]="firstName.invalid && firstName.touched"
+      required
     />
+    <small
+      class="text-danger"
+      [class.d-none]="firstName.valid || firstName.untouched"
+      >Firstname is required</small
+    >
   </div>
   <div class="form-group">
     <label for="">MiddleName : </label>
@@ -16,7 +24,15 @@
       name="middleName"
       [(ngModel)]="userModel.middleName"
       class="form-control"
+      #middleName="ngModel"
+      [class.is-invalid]="middleName.invalid && middleName.touched"
+      required
     />
+    <small
+      class="text-danger"
+      [class.d-none]="middleName.valid || middleName.untouched"
+      >Middlename is required</small
+    >
   </div>
   <div class="form-group">
     <label for="">LastName : </label>
@@ -25,7 +41,15 @@
       class="form-control"
       name="lastName"
       [(ngModel)]="userModel.lastName"
+      #lastName="ngModel"
+      [class.is-invalid]="lastName.invalid && lastName.touched"
+      required
     />
+    <small
+      class="text-danger"
+      [class.d-none]="lastName.valid || lastName.untouched"
+      >Lastname is required</small
+    >
   </div>
 
   <!-- 2.textarea -->
@@ -99,6 +123,33 @@
       />
       <label class="form-check-label" for="inlineCheckbox1">dancing</label>
     </div>
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        name="reading"
+        [(ngModel)]="userModel.hobby.reading"
+      />
+      <label class="form-check-label" for="inlineCheckbox1">reading</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        name="blogging"
+        [(ngModel)]="userModel.hobby.blogging"
+      />
+      <label class="form-check-label" for="inlineCheckbox1">blogging</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        name="journaling"
+        [(ngModel)]="userModel.hobby.journaling"
+      />
+      <label class="form-check-label" for="inlineCheckbox1">journaling</label>
+    </div>
   </div>
 
   <!-- 6.company -->
@@ -113,7 +164,7 @@
   <!-- 7.buttons -->
   <div class="form-group mt-3">
     <button class="btn btn-secondary" (click)="goBack()">Back</button>
-    <button class="btn btn-primary">Submit</button>
+    <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
     <button class="btn btn-warning" (click)="clearAll()">Clear All</button>
   </div>
 </form>
